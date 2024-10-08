@@ -18,17 +18,19 @@ namespace PAM_Study.Service
         private Models.Monitor monitor;
         private ObservableCollection<Models.Monitor> monitors;
         private JsonSerializerOptions serializerOptions;
-        public MonitorService()
-        {
+
+        public MonitorService(){
+
             client = new HttpClient();
             serializerOptions = new JsonSerializerOptions {
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase, WriteIndented = true
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase, 
+                WriteIndented = true
             };
         }
 
-        public async Task<List<Models.Monitor>> getAllMonitorsAsync()
+        public async Task<ObservableCollection<Models.Monitor>> getAllMonitorsAsync()
         {
-            Uri uri = new Uri("");
+            Uri uri = new Uri("http://localhost:8080/");
             try
             {
                 HttpResponseMessage response = await client.GetAsync(uri);
